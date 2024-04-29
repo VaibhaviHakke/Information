@@ -1,0 +1,15 @@
+->CQLSH
+
+->desc keyspaces
+
+->create keyspace if not exists pentagon with replication={'class':'SimpleStrategy','replication_factor':2};
+
+->use pentagon;
+
+->create table firstTable(name text, prn int primary key);
+
+->insert into firstTable(name, prn) values('Vaibhavi',21510021);
+
+->use Shweta;
+
+->select * from assign10;
