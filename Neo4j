@@ -1,0 +1,14 @@
+Step. 1]
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/ngshya/datasets/master/cora/cora_content.csv' AS line FIELDTERMINATOR ','
+MERGE (c:Classification {name: line.label})
+
+Step. 2]
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/ngshya/datasets/master/cora/cora_content.csv' AS line FIELDTERMINATOR ','
+MATCH (p:Paper {id: line.paper_id})
+MERGE (c:Classification {name: line.label})
+MERGE (p)-[:HAS_CLASSIFICATION]->(c)
+
+Step. 3]
+MATCH (c:Classification)--(p:Paper)
+RETURN c.name AS ClassificationName, p.id AS PaperID
+LIMIT 10
